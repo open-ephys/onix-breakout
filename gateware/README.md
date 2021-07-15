@@ -4,7 +4,7 @@ The breakout board contains a [TinyFPGA BX](https://tinyfpga.com/bx/guide.html)
 deserialization, interpreting user input, and driving indication LEDs.
 
 ## Build Steps
-The build process is governed by the the included Makefile. There are a few key
+The build process is governed by the included Makefile. There are a few key
 targets:
 
 1. `make`: makes the bit file
