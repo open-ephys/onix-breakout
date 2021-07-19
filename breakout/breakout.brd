@@ -1881,10 +1881,10 @@ JLC7628 Stackup
 <element name="C49" library="jonnew" package="0402" value="0.1uF" x="466.8" y="108.8" smashed="yes" rot="R90">
 <attribute name="NAME" x="466.2" y="110.6" size="1.016" layer="25" font="vector" ratio="19"/>
 </element>
-<element name="R25" library="jonnew" package="0402" value="100" x="456.8" y="119.8" smashed="yes" rot="R270">
+<element name="R26" library="jonnew" package="0402" value="100" x="456.8" y="119.8" smashed="yes" rot="R270">
 <attribute name="NAME" x="455.8" y="118.8" size="1.016" layer="25" font="vector" ratio="19" rot="R90"/>
 </element>
-<element name="R26" library="jonnew" package="0402" value="100" x="456.8" y="117.5" smashed="yes" rot="R90">
+<element name="R27" library="jonnew" package="0402" value="100" x="456.8" y="117.5" smashed="yes" rot="R90">
 <attribute name="NAME" x="455.8" y="116.2" size="1.016" layer="25" font="vector" ratio="19" rot="R90"/>
 </element>
 <element name="U47" library="jonnew" package="BGA_5X5_625X625" value="LTM4622A" x="446.2" y="97.7" smashed="yes" rot="R270">
@@ -1950,7 +1950,7 @@ JLC7628 Stackup
 <element name="C41" library="jonnew" package="0402" value="0.1uF" x="469.5" y="117.8" smashed="yes" rot="R90">
 <attribute name="NAME" x="468.4" y="114.7" size="1.016" layer="25" font="vector" ratio="19" rot="R26.5"/>
 </element>
-<element name="C42" library="jonnew" package="0402" value="0.1uF" x="480.4" y="118" smashed="yes" rot="R270">
+<element name="C43" library="jonnew" package="0402" value="0.1uF" x="480.4" y="118" smashed="yes" rot="R270">
 <attribute name="NAME" x="479.8" y="115.5" size="1.016" layer="25" font="vector" ratio="19"/>
 </element>
 <element name="J27" library="jonnew" package="MMCX-THRU" value="" x="480" y="25" smashed="yes">
@@ -2154,7 +2154,7 @@ JLC7628 Stackup
 <element name="U50" library="jonnew" package="TSSOP-24" value="TCA9555" x="439.3" y="69.9" smashed="yes">
 <attribute name="NAME" x="438.45" y="64.9" size="1.016" layer="25" font="vector" ratio="18" align="center-left"/>
 </element>
-<element name="C43" library="jonnew" package="0402" value="0.1uF" x="439.4" y="74.9" smashed="yes">
+<element name="C42" library="jonnew" package="0402" value="0.1uF" x="439.4" y="74.9" smashed="yes">
 <attribute name="NAME" x="438.257" y="75.662" size="1.016" layer="25" font="vector" ratio="18"/>
 </element>
 <element name="R22" library="jonnew" package="0402" value="4.7k" x="435.6" y="75" smashed="yes">
@@ -2203,7 +2203,7 @@ JLC7628 Stackup
 <element name="D17" library="jonnew" package="SOT23" value="BAT54SLT1G" x="456.7" y="123.2" smashed="yes">
 <attribute name="NAME" x="451.695" y="123.805" size="1.016" layer="25" font="vector" ratio="18"/>
 </element>
-<element name="R27" library="jonnew" package="0805" value="270, 0.5W" x="454.9" y="126.3" smashed="yes" rot="R180">
+<element name="R28" library="jonnew" package="0805" value="270, 0.5W" x="454.9" y="126.3" smashed="yes" rot="R180">
 <attribute name="NAME" x="448.822" y="126.17" size="1.016" layer="25" font="vector" ratio="18"/>
 </element>
 <element name="D30" library="jonnew" package="MSOP-10-3X3" value="CM1213−08MR" x="423.9" y="126.1" smashed="yes" rot="R90">
@@ -2212,91 +2212,91 @@ JLC7628 Stackup
 <element name="D19" library="jonnew" package="SOT23" value="BAT54SLT1G" x="460.3" y="123.2" smashed="yes">
 <attribute name="NAME" x="451.695" y="122.505" size="1.016" layer="25" font="vector" ratio="18"/>
 </element>
-<element name="R29" library="jonnew" package="0805" value="270, 0.5W" x="458.5" y="126.3" smashed="yes" rot="R180">
+<element name="R30" library="jonnew" package="0805" value="270, 0.5W" x="458.5" y="126.3" smashed="yes" rot="R180">
 <attribute name="NAME" x="448.822" y="124.87" size="1.016" layer="25" font="vector" ratio="18"/>
 </element>
 <element name="D22" library="jonnew" package="SOT23" value="BAT54SLT1G" x="463.9" y="123.2" smashed="yes">
 <attribute name="NAME" x="451.695" y="121.205" size="1.016" layer="25" font="vector" ratio="18"/>
 </element>
-<element name="R31" library="jonnew" package="0805" value="270, 0.5W" x="462.1" y="126.3" smashed="yes" rot="R180">
+<element name="R32" library="jonnew" package="0805" value="270, 0.5W" x="462.1" y="126.3" smashed="yes" rot="R180">
 <attribute name="NAME" x="448.822" y="123.57" size="1.016" layer="25" font="vector" ratio="18"/>
 </element>
 <element name="D24" library="jonnew" package="SOT23" value="BAT54SLT1G" x="467.5" y="123.2" smashed="yes">
 <attribute name="NAME" x="451.695" y="119.805" size="1.016" layer="25" font="vector" ratio="18"/>
 </element>
-<element name="R33" library="jonnew" package="0805" value="270, 0.5W" x="465.7" y="126.3" smashed="yes" rot="R180">
+<element name="R34" library="jonnew" package="0805" value="270, 0.5W" x="465.7" y="126.3" smashed="yes" rot="R180">
 <attribute name="NAME" x="448.822" y="122.17" size="1.016" layer="25" font="vector" ratio="18"/>
 </element>
 <element name="D26" library="jonnew" package="SOT23" value="BAT54SLT1G" x="471.1" y="123.2" smashed="yes">
 <attribute name="NAME" x="451.695" y="118.505" size="1.016" layer="25" font="vector" ratio="18"/>
 </element>
-<element name="R35" library="jonnew" package="0805" value="270, 0.5W" x="469.3" y="126.3" smashed="yes" rot="R180">
+<element name="R36" library="jonnew" package="0805" value="270, 0.5W" x="469.3" y="126.3" smashed="yes" rot="R180">
 <attribute name="NAME" x="448.822" y="120.87" size="1.016" layer="25" font="vector" ratio="18"/>
 </element>
 <element name="D28" library="jonnew" package="SOT23" value="BAT54SLT1G" x="474.7" y="123.2" smashed="yes">
 <attribute name="NAME" x="451.695" y="117.205" size="1.016" layer="25" font="vector" ratio="18"/>
 </element>
-<element name="R37" library="jonnew" package="0805" value="270, 0.5W" x="472.9" y="126.3" smashed="yes" rot="R180">
+<element name="R38" library="jonnew" package="0805" value="270, 0.5W" x="472.9" y="126.3" smashed="yes" rot="R180">
 <attribute name="NAME" x="448.822" y="119.57" size="1.016" layer="25" font="vector" ratio="18"/>
 </element>
 <element name="D31" library="jonnew" package="SOT23" value="BAT54SLT1G" x="478.3" y="123.2" smashed="yes">
 <attribute name="NAME" x="451.695" y="115.905" size="1.016" layer="25" font="vector" ratio="18"/>
 </element>
-<element name="R39" library="jonnew" package="0805" value="270, 0.5W" x="476.5" y="126.3" smashed="yes" rot="R180">
+<element name="R40" library="jonnew" package="0805" value="270, 0.5W" x="476.5" y="126.3" smashed="yes" rot="R180">
 <attribute name="NAME" x="448.822" y="118.27" size="1.016" layer="25" font="vector" ratio="18"/>
 </element>
 <element name="D33" library="jonnew" package="SOT23" value="BAT54SLT1G" x="481.9" y="123.2" smashed="yes">
 <attribute name="NAME" x="451.695" y="114.605" size="1.016" layer="25" font="vector" ratio="18"/>
 </element>
-<element name="R41" library="jonnew" package="0805" value="270, 0.5W" x="480.1" y="126.3" smashed="yes" rot="R180">
+<element name="R42" library="jonnew" package="0805" value="270, 0.5W" x="480.1" y="126.3" smashed="yes" rot="R180">
 <attribute name="NAME" x="448.822" y="116.97" size="1.016" layer="25" font="vector" ratio="18"/>
 </element>
 <element name="D18" library="jonnew" package="SOT23" value="BAT54SLT1G" x="444.8" y="129.4" smashed="yes" rot="R90">
 <attribute name="NAME" x="447.005" y="130.505" size="1.016" layer="25" font="vector" ratio="18" rot="R270"/>
 </element>
-<element name="R28" library="jonnew" package="0805" value="270, 0.5W" x="440.9" y="129.4" smashed="yes" rot="R180">
+<element name="R29" library="jonnew" package="0805" value="270, 0.5W" x="440.9" y="129.4" smashed="yes" rot="R180">
 <attribute name="NAME" x="442.678" y="128.13" size="1.016" layer="25" font="vector" ratio="18" rot="R180"/>
 </element>
 <element name="D20" library="jonnew" package="SOT23" value="BAT54SLT1G" x="444.8" y="125.4" smashed="yes" rot="R90">
 <attribute name="NAME" x="447.005" y="126.605" size="1.016" layer="25" font="vector" ratio="18" rot="R270"/>
 </element>
-<element name="R30" library="jonnew" package="0805" value="270, 0.5W" x="440.9" y="125.4" smashed="yes" rot="R180">
+<element name="R31" library="jonnew" package="0805" value="270, 0.5W" x="440.9" y="125.4" smashed="yes" rot="R180">
 <attribute name="NAME" x="442.678" y="124.13" size="1.016" layer="25" font="vector" ratio="18" rot="R180"/>
 </element>
 <element name="D23" library="jonnew" package="SOT23" value="BAT54SLT1G" x="444.8" y="121.4" smashed="yes" rot="R90">
 <attribute name="NAME" x="447.005" y="122.605" size="1.016" layer="25" font="vector" ratio="18" rot="R270"/>
 </element>
-<element name="R32" library="jonnew" package="0805" value="270, 0.5W" x="440.9" y="121.4" smashed="yes" rot="R180">
+<element name="R33" library="jonnew" package="0805" value="270, 0.5W" x="440.9" y="121.4" smashed="yes" rot="R180">
 <attribute name="NAME" x="442.678" y="120.13" size="1.016" layer="25" font="vector" ratio="18" rot="R180"/>
 </element>
 <element name="D25" library="jonnew" package="SOT23" value="BAT54SLT1G" x="444.8" y="117.4" smashed="yes" rot="R90">
 <attribute name="NAME" x="447.005" y="118.505" size="1.016" layer="25" font="vector" ratio="18" rot="R270"/>
 </element>
-<element name="R34" library="jonnew" package="0805" value="270, 0.5W" x="440.9" y="117.4" smashed="yes" rot="R180">
+<element name="R35" library="jonnew" package="0805" value="270, 0.5W" x="440.9" y="117.4" smashed="yes" rot="R180">
 <attribute name="NAME" x="442.678" y="116.13" size="1.016" layer="25" font="vector" ratio="18" rot="R180"/>
 </element>
 <element name="D27" library="jonnew" package="SOT23" value="BAT54SLT1G" x="436.8" y="129.4" smashed="yes" rot="R90">
 <attribute name="NAME" x="435.9" y="128.1" size="1.016" layer="25" font="vector" ratio="18" rot="R180"/>
 </element>
-<element name="R36" library="jonnew" package="0805" value="270, 0.5W" x="432.9" y="129.4" smashed="yes" rot="R180">
+<element name="R37" library="jonnew" package="0805" value="270, 0.5W" x="432.9" y="129.4" smashed="yes" rot="R180">
 <attribute name="NAME" x="432.7" y="128.1" size="1.016" layer="25" font="vector" ratio="18" rot="R180"/>
 </element>
 <element name="D29" library="jonnew" package="SOT23" value="BAT54SLT1G" x="436.8" y="125.4" smashed="yes" rot="R90">
 <attribute name="NAME" x="435.905" y="124.095" size="1.016" layer="25" font="vector" ratio="18" rot="R180"/>
 </element>
-<element name="R38" library="jonnew" package="0805" value="270, 0.5W" x="432.9" y="125.4" smashed="yes" rot="R180">
+<element name="R39" library="jonnew" package="0805" value="270, 0.5W" x="432.9" y="125.4" smashed="yes" rot="R180">
 <attribute name="NAME" x="432.7" y="124.1" size="1.016" layer="25" font="vector" ratio="18" rot="R180"/>
 </element>
 <element name="D32" library="jonnew" package="SOT23" value="BAT54SLT1G" x="436.8" y="121.4" smashed="yes" rot="R90">
 <attribute name="NAME" x="435.9" y="120.1" size="1.016" layer="25" font="vector" ratio="18" rot="R180"/>
 </element>
-<element name="R40" library="jonnew" package="0805" value="270, 0.5W" x="432.9" y="121.4" smashed="yes" rot="R180">
+<element name="R41" library="jonnew" package="0805" value="270, 0.5W" x="432.9" y="121.4" smashed="yes" rot="R180">
 <attribute name="NAME" x="432.6" y="120.1" size="1.016" layer="25" font="vector" ratio="18" rot="R180"/>
 </element>
 <element name="D34" library="jonnew" package="SOT23" value="BAT54SLT1G" x="436.8" y="117.4" smashed="yes" rot="R90">
 <attribute name="NAME" x="435.9" y="116.1" size="1.016" layer="25" font="vector" ratio="18" rot="R180"/>
 </element>
-<element name="R42" library="jonnew" package="0805" value="270, 0.5W" x="432.9" y="117.4" smashed="yes" rot="R180">
+<element name="R43" library="jonnew" package="0805" value="270, 0.5W" x="432.9" y="117.4" smashed="yes" rot="R180">
 <attribute name="NAME" x="432.8" y="116.1" size="1.016" layer="25" font="vector" ratio="18" rot="R180"/>
 </element>
 <element name="U31" library="jonnew" package="NEOPIXEL-1.5X1.5" value="SK6805-E-J" x="240" y="30" smashed="yes" rot="R90">
@@ -2561,7 +2561,7 @@ JLC7628 Stackup
 <element name="Q9" library="jonnew" package="SOT23-GSD" value="IRFML8244TRPBF" x="452.3" y="105.3" smashed="yes">
 <attribute name="NAME" x="451.503" y="101.362" size="1.016" layer="25" font="vector" ratio="18"/>
 </element>
-<element name="R43" library="jonnew" package="0402" value="4.7k" x="450.8" y="97.7" smashed="yes" rot="R180">
+<element name="R25" library="jonnew" package="0402" value="4.7k" x="450.8" y="97.7" smashed="yes" rot="R180">
 <attribute name="NAME" x="452.157" y="97.162" size="1.016" layer="25" font="vector" ratio="18"/>
 </element>
 </elements>
@@ -2702,7 +2702,7 @@ JLC7628 Stackup
 <vertex x="489" y="147"/>
 </polygon>
 <contactref element="U48" pad="4"/>
-<contactref element="C42" pad="1"/>
+<contactref element="C43" pad="1"/>
 <contactref element="J27" pad="GND@4"/>
 <contactref element="J27" pad="GND@1"/>
 <contactref element="J27" pad="GND@2"/>
@@ -2971,7 +2971,7 @@ JLC7628 Stackup
 <contactref element="U50" pad="2"/>
 <contactref element="U50" pad="21"/>
 <contactref element="U50" pad="12"/>
-<contactref element="C43" pad="1"/>
+<contactref element="C42" pad="1"/>
 <contactref element="U49" pad="GND@2"/>
 <contactref element="U49" pad="GND@1"/>
 <polygon width="0.2" layer="3">
@@ -4224,7 +4224,7 @@ JLC7628 Stackup
 <wire x1="472.8" y1="89" x2="472.1" y2="89.7" width="1" layer="16"/>
 <wire x1="465.7" y1="89.7" x2="472.1" y2="89.7" width="1" layer="16"/>
 <wire x1="456.1" y1="93.2" x2="459.15" y2="96.25" width="0.5" layer="16"/>
-<contactref element="R43" pad="2"/>
+<contactref element="R25" pad="2"/>
 <wire x1="450.2666" y1="97.7" x2="450.3" y2="97.7334" width="0.2" layer="1"/>
 <wire x1="450.3" y1="97.7334" x2="450.3" y2="99.1" width="0.2" layer="1"/>
 <via x="450.3" y="99.1" extent="1-16" drill="0.3"/>
@@ -4772,7 +4772,7 @@ JLC7628 Stackup
 <contactref element="R23" pad="1"/>
 <contactref element="R24" pad="1"/>
 <contactref element="U50" pad="24"/>
-<contactref element="C43" pad="2"/>
+<contactref element="C42" pad="2"/>
 <wire x1="435.0666" y1="75" x2="435.1" y2="75.0334" width="0.2" layer="1"/>
 <wire x1="435.1" y1="75.0334" x2="435.1" y2="76.4" width="0.2" layer="1"/>
 <wire x1="439.9334" y1="74.9" x2="440.9" y2="75.8666" width="0.5" layer="1"/>
@@ -5666,7 +5666,7 @@ JLC7628 Stackup
 <contactref element="TP2" pad="TP"/>
 <wire x1="447.47" y1="100.24" x2="448.74" y2="100.24" width="0.508" layer="1"/>
 <contactref element="U48" pad="1"/>
-<contactref element="C42" pad="2"/>
+<contactref element="C43" pad="2"/>
 <polygon width="0.2" layer="1" thermals="no" rank="2">
 <vertex x="447.2" y="99.7"/>
 <vertex x="447.2" y="103.7"/>
@@ -6295,7 +6295,7 @@ JLC7628 Stackup
 </signal>
 <signal name="LVDS_DOUT0_P" class="3">
 <contactref element="U51" pad="2"/>
-<contactref element="R25" pad="2"/>
+<contactref element="R26" pad="2"/>
 <contactref element="J32" pad="21"/>
 <via x="475.7866" y="79.3" extent="1-16" drill="0.3"/>
 <wire x1="471.251934375" y1="92.94" x2="469.7" y2="92.94" width="0.19" layer="2"/>
@@ -6375,7 +6375,7 @@ JLC7628 Stackup
 </signal>
 <signal name="LVDS_DOUT0_N" class="3">
 <contactref element="U51" pad="1"/>
-<contactref element="R25" pad="1"/>
+<contactref element="R26" pad="1"/>
 <contactref element="J32" pad="8"/>
 <via x="475.1534" y="79.344153125" extent="1-16" drill="0.3"/>
 <wire x1="471.19973125" y1="92.66" x2="469.7" y2="92.66" width="0.19" layer="2"/>
@@ -6455,7 +6455,7 @@ JLC7628 Stackup
 </signal>
 <signal name="LVDS_DOUT1_P" class="3">
 <contactref element="U51" pad="6"/>
-<contactref element="R26" pad="2"/>
+<contactref element="R27" pad="2"/>
 <contactref element="J32" pad="22"/>
 <wire x1="472.8" y1="77.1425" x2="475.34049375" y2="77.1425" width="0.19" layer="1"/>
 <wire x1="475.34049375" y1="77.1425" x2="476.69799375" y2="78.5" width="0.19" layer="1"/>
@@ -6505,7 +6505,7 @@ JLC7628 Stackup
 </signal>
 <signal name="LVDS_DOUT1_N" class="3">
 <contactref element="U51" pad="7"/>
-<contactref element="R26" pad="1"/>
+<contactref element="R27" pad="1"/>
 <wire x1="458.675" y1="116.6" x2="458.7" y2="116.575" width="0.2" layer="1"/>
 <contactref element="J32" pad="9"/>
 <wire x1="472.8" y1="77.7775" x2="475.328753125" y2="77.7775" width="0.19" layer="1"/>
@@ -7001,7 +7001,7 @@ JLC7628 Stackup
 <contactref element="J31" pad="2"/>
 <contactref element="J33" pad="11"/>
 <contactref element="J33" pad="2"/>
-<contactref element="R27" pad="2"/>
+<contactref element="R28" pad="2"/>
 <via x="453.1" y="125.8" extent="1-16" drill="0.3"/>
 <wire x1="453.8" y1="126.3" x2="453.8586" y2="126.3" width="0.2" layer="1"/>
 <wire x1="453.1" y1="125.8" x2="453.8" y2="125.8" width="0.2" layer="1"/>
@@ -7029,7 +7029,7 @@ JLC7628 Stackup
 <contactref element="J31" pad="4"/>
 <contactref element="J33" pad="12"/>
 <contactref element="J33" pad="3"/>
-<contactref element="R29" pad="2"/>
+<contactref element="R30" pad="2"/>
 <via x="458.2" y="126.9" extent="1-16" drill="0.3"/>
 <wire x1="457.4586" y1="126.3" x2="457.6" y2="126.3" width="0.2" layer="1"/>
 <wire x1="457.6" y1="126.3" x2="458.2" y2="126.9" width="0.2" layer="1"/>
@@ -7062,7 +7062,7 @@ JLC7628 Stackup
 <contactref element="J31" pad="6"/>
 <contactref element="J33" pad="4"/>
 <contactref element="J33" pad="13"/>
-<contactref element="R31" pad="2"/>
+<contactref element="R32" pad="2"/>
 <via x="461.9" y="126.4" extent="1-16" drill="0.3"/>
 <wire x1="461.9" y1="126.4" x2="461.102359375" y2="127.197640625" width="0.2" layer="2"/>
 <wire x1="461.102359375" y1="127.197640625" x2="461.102359375" y2="129.5" width="0.2" layer="2"/>
@@ -7089,7 +7089,7 @@ JLC7628 Stackup
 <contactref element="J31" pad="8"/>
 <contactref element="J33" pad="14"/>
 <contactref element="J33" pad="5"/>
-<contactref element="R33" pad="2"/>
+<contactref element="R34" pad="2"/>
 <via x="465.5" y="126.3" extent="1-16" drill="0.3"/>
 <wire x1="463.4" y1="128.4" x2="465.5" y2="126.3" width="0.2" layer="2"/>
 <wire x1="463.4" y1="128.4" x2="463.4" y2="129.7" width="0.2" layer="2"/>
@@ -7113,7 +7113,7 @@ JLC7628 Stackup
 <contactref element="J31" pad="10"/>
 <contactref element="J33" pad="6"/>
 <contactref element="J33" pad="15"/>
-<contactref element="R35" pad="2"/>
+<contactref element="R36" pad="2"/>
 <via x="469.2" y="126.3" extent="1-16" drill="0.3"/>
 <wire x1="465.9" y1="128.5" x2="465.9" y2="129.9" width="0.2" layer="2"/>
 <wire x1="468.2586" y1="126.3" x2="469.2" y2="126.3" width="0.2" layer="1"/>
@@ -7144,7 +7144,7 @@ JLC7628 Stackup
 <contactref element="J31" pad="12"/>
 <contactref element="J33" pad="7"/>
 <contactref element="J33" pad="16"/>
-<contactref element="R37" pad="2"/>
+<contactref element="R38" pad="2"/>
 <via x="472.7" y="126.3" extent="1-16" drill="0.3"/>
 <wire x1="468.6" y1="128.4" x2="470.7" y2="126.3" width="0.2" layer="2"/>
 <wire x1="470.7" y1="126.3" x2="472.7" y2="126.3" width="0.2" layer="2"/>
@@ -7179,7 +7179,7 @@ JLC7628 Stackup
 <contactref element="J31" pad="14"/>
 <contactref element="J33" pad="8"/>
 <contactref element="J33" pad="17"/>
-<contactref element="R39" pad="2"/>
+<contactref element="R40" pad="2"/>
 <wire x1="473.6" y1="127.8" x2="475.1" y2="126.3" width="0.2" layer="2"/>
 <wire x1="475.1" y1="126.3" x2="476.3" y2="126.3" width="0.2" layer="2"/>
 <via x="476.3" y="126.3" extent="1-16" drill="0.3"/>
@@ -7212,7 +7212,7 @@ JLC7628 Stackup
 <contactref element="J31" pad="16"/>
 <contactref element="J33" pad="9"/>
 <contactref element="J33" pad="18"/>
-<contactref element="R41" pad="2"/>
+<contactref element="R42" pad="2"/>
 <wire x1="478.8" y1="127.4" x2="479.9" y2="126.3" width="0.2" layer="2"/>
 <via x="479.9" y="126.3" extent="1-16" drill="0.3"/>
 <wire x1="479.9" y1="126.3" x2="479.0586" y2="126.3" width="0.2" layer="1"/>
@@ -7237,7 +7237,7 @@ JLC7628 Stackup
 <contactref element="J35" pad="2"/>
 <contactref element="J35" pad="11"/>
 <contactref element="J34" pad="2"/>
-<contactref element="R42" pad="2"/>
+<contactref element="R43" pad="2"/>
 <via x="430.7" y="117.4" extent="1-16" drill="0.3"/>
 <wire x1="431.8586" y1="117.4" x2="430.7" y2="117.4" width="0.2" layer="1"/>
 <contactref element="D30" pad="4"/>
@@ -7259,7 +7259,7 @@ JLC7628 Stackup
 <contactref element="J35" pad="12"/>
 <contactref element="J35" pad="3"/>
 <contactref element="J34" pad="4"/>
-<contactref element="R34" pad="2"/>
+<contactref element="R35" pad="2"/>
 <via x="439.2" y="118.4" extent="1-16" drill="0.3"/>
 <contactref element="D30" pad="3"/>
 <wire x1="395.83" y1="140.08" x2="395.83" y2="135" width="0.2" layer="2"/>
@@ -7285,7 +7285,7 @@ JLC7628 Stackup
 <contactref element="J35" pad="4"/>
 <contactref element="J35" pad="13"/>
 <contactref element="J34" pad="6"/>
-<contactref element="R40" pad="2"/>
+<contactref element="R41" pad="2"/>
 <via x="430.7" y="121.4" extent="1-16" drill="0.3"/>
 <wire x1="431.8586" y1="121.4" x2="430.7" y2="121.4" width="0.2" layer="1"/>
 <contactref element="D30" pad="2"/>
@@ -7310,7 +7310,7 @@ JLC7628 Stackup
 <contactref element="J35" pad="5"/>
 <contactref element="J35" pad="14"/>
 <contactref element="J34" pad="8"/>
-<contactref element="R32" pad="2"/>
+<contactref element="R33" pad="2"/>
 <via x="439.2" y="122.4" extent="1-16" drill="0.3"/>
 <contactref element="D30" pad="1"/>
 <wire x1="390.2875" y1="138.6375" x2="388.105" y2="140.82" width="0.2" layer="16"/>
@@ -7339,7 +7339,7 @@ JLC7628 Stackup
 <contactref element="J35" pad="15"/>
 <contactref element="J35" pad="6"/>
 <contactref element="J34" pad="10"/>
-<contactref element="R38" pad="2"/>
+<contactref element="R39" pad="2"/>
 <via x="430.7" y="125.4" extent="1-16" drill="0.3"/>
 <wire x1="431.8586" y1="125.4" x2="430.7" y2="125.4" width="0.2" layer="1"/>
 <contactref element="D30" pad="10"/>
@@ -7364,7 +7364,7 @@ JLC7628 Stackup
 <contactref element="J35" pad="16"/>
 <contactref element="J35" pad="7"/>
 <contactref element="J34" pad="12"/>
-<contactref element="R30" pad="2"/>
+<contactref element="R31" pad="2"/>
 <via x="439.2" y="126.4" extent="1-16" drill="0.3"/>
 <contactref element="D30" pad="9"/>
 <wire x1="387.475" y1="133.575" x2="388.75" y2="132.3" width="0.2" layer="16"/>
@@ -7391,7 +7391,7 @@ JLC7628 Stackup
 <contactref element="J35" pad="8"/>
 <contactref element="J34" pad="14"/>
 <wire x1="388.45" y1="131.3" x2="404.83" y2="131.3" width="0.2" layer="16"/>
-<contactref element="R36" pad="2"/>
+<contactref element="R37" pad="2"/>
 <via x="430.8" y="129.4" extent="1-16" drill="0.3"/>
 <wire x1="431.8586" y1="129.4" x2="430.8" y2="129.4" width="0.2" layer="1"/>
 <contactref element="D30" pad="7"/>
@@ -7414,7 +7414,7 @@ JLC7628 Stackup
 <contactref element="J35" pad="9"/>
 <contactref element="J35" pad="18"/>
 <contactref element="J34" pad="16"/>
-<contactref element="R28" pad="2"/>
+<contactref element="R29" pad="2"/>
 <via x="439.5" y="130.7" extent="1-16" drill="0.3"/>
 <contactref element="D30" pad="6"/>
 <wire x1="414.27" y1="131.8" x2="411.07" y2="135" width="0.2" layer="2"/>
@@ -7463,7 +7463,7 @@ JLC7628 Stackup
 <wire x1="341.8" y1="120.2" x2="341.7" y2="120.3" width="0.2" layer="2"/>
 </signal>
 <signal name="DOUT0_P">
-<contactref element="R27" pad="1"/>
+<contactref element="R28" pad="1"/>
 <contactref element="D17" pad="3"/>
 <contactref element="U49" pad="8"/>
 <wire x1="456" y1="126.3" x2="455.9414" y2="126.3" width="0.2" layer="1"/>
@@ -7477,7 +7477,7 @@ JLC7628 Stackup
 <wire x1="461.22" y1="128.92" x2="460.1" y2="127.8" width="0.2" layer="1"/>
 </signal>
 <signal name="DOUT1_P">
-<contactref element="R29" pad="1"/>
+<contactref element="R30" pad="1"/>
 <contactref element="D19" pad="3"/>
 <contactref element="U49" pad="7"/>
 <wire x1="464.73" y1="128.92" x2="464.3" y2="128.49" width="0.2" layer="1"/>
@@ -7493,7 +7493,7 @@ JLC7628 Stackup
 <wire x1="464.12" y1="128.92" x2="464.73" y2="128.92" width="0.2" layer="1"/>
 </signal>
 <signal name="DOUT2_P">
-<contactref element="R31" pad="1"/>
+<contactref element="R32" pad="1"/>
 <contactref element="D22" pad="3"/>
 <contactref element="U49" pad="6"/>
 <wire x1="463.9" y1="124.3" x2="463.9" y2="124.2" width="0.2" layer="1"/>
@@ -7509,7 +7509,7 @@ JLC7628 Stackup
 <wire x1="465.9" y1="127.55" x2="467.27" y2="128.92" width="0.2" layer="1"/>
 </signal>
 <signal name="DOUT3_P">
-<contactref element="R33" pad="1"/>
+<contactref element="R34" pad="1"/>
 <contactref element="D24" pad="3"/>
 <contactref element="U49" pad="5"/>
 <wire x1="467.5" y1="124.3" x2="467.5" y2="124.6" width="0.2" layer="1"/>
@@ -7521,7 +7521,7 @@ JLC7628 Stackup
 <wire x1="467.455" y1="127.755" x2="466.7414" y2="127.0414" width="0.2" layer="1"/>
 </signal>
 <signal name="DOUT4_P">
-<contactref element="R35" pad="1"/>
+<contactref element="R36" pad="1"/>
 <contactref element="D26" pad="3"/>
 <contactref element="U49" pad="4"/>
 <wire x1="471.1" y1="124.3" x2="471.1" y2="124.6" width="0.2" layer="1"/>
@@ -7532,7 +7532,7 @@ JLC7628 Stackup
 <wire x1="470.3414" y1="126.9114" x2="472.35" y2="128.92" width="0.2" layer="1"/>
 </signal>
 <signal name="DOUT5_P">
-<contactref element="R37" pad="1"/>
+<contactref element="R38" pad="1"/>
 <contactref element="D28" pad="3"/>
 <contactref element="U49" pad="3"/>
 <wire x1="474.7" y1="124.3" x2="474.7" y2="125.5414" width="0.2" layer="1"/>
@@ -7542,7 +7542,7 @@ JLC7628 Stackup
 <wire x1="473.9414" y1="127.9714" x2="474.89" y2="128.92" width="0.2" layer="1"/>
 </signal>
 <signal name="DOUT6_P">
-<contactref element="R39" pad="1"/>
+<contactref element="R40" pad="1"/>
 <contactref element="D31" pad="3"/>
 <contactref element="U49" pad="2"/>
 <wire x1="478.2" y1="124.4" x2="478.3" y2="124.3" width="0.2" layer="1"/>
@@ -7553,7 +7553,7 @@ JLC7628 Stackup
 <wire x1="477.43" y1="126.3114" x2="477.5414" y2="126.2" width="0.2" layer="1"/>
 </signal>
 <signal name="DOUT7_P">
-<contactref element="R41" pad="1"/>
+<contactref element="R42" pad="1"/>
 <contactref element="D33" pad="3"/>
 <contactref element="U49" pad="1"/>
 <wire x1="479.97" y1="128.92" x2="479.97" y2="127.4714" width="0.2" layer="1"/>
@@ -7562,7 +7562,7 @@ JLC7628 Stackup
 <wire x1="481.1414" y1="125.0586" x2="481.9" y2="124.3" width="0.2" layer="1"/>
 </signal>
 <signal name="DIN7_P">
-<contactref element="R28" pad="1"/>
+<contactref element="R29" pad="1"/>
 <contactref element="D18" pad="3"/>
 <wire x1="443.7" y1="129.4" x2="441.9414" y2="129.4" width="0.2" layer="1"/>
 <contactref element="U49" pad="13"/>
@@ -7572,7 +7572,7 @@ JLC7628 Stackup
 <wire x1="449.01" y1="129.4" x2="449.49" y2="128.92" width="0.2" layer="2"/>
 </signal>
 <signal name="DIN5_P">
-<contactref element="R30" pad="1"/>
+<contactref element="R31" pad="1"/>
 <contactref element="D20" pad="3"/>
 <wire x1="443.7" y1="125.4" x2="441.9414" y2="125.4" width="0.2" layer="1"/>
 <contactref element="U49" pad="11"/>
@@ -7582,7 +7582,7 @@ JLC7628 Stackup
 <wire x1="451.05" y1="125.4" x2="454.57" y2="128.92" width="0.2" layer="2"/>
 </signal>
 <signal name="DIN3_P">
-<contactref element="R32" pad="1"/>
+<contactref element="R33" pad="1"/>
 <contactref element="D23" pad="3"/>
 <wire x1="443.7" y1="121.4" x2="441.9414" y2="121.4" width="0.2" layer="1"/>
 <contactref element="U49" pad="9"/>
@@ -7595,7 +7595,7 @@ JLC7628 Stackup
 <wire x1="453.83" y1="123.1" x2="452.13" y2="121.4" width="0.2" layer="2"/>
 </signal>
 <signal name="DIN1_P">
-<contactref element="R34" pad="1"/>
+<contactref element="R35" pad="1"/>
 <contactref element="D25" pad="3"/>
 <wire x1="443.7" y1="117.4" x2="441.9414" y2="117.4" width="0.2" layer="1"/>
 <contactref element="U49" pad="15"/>
@@ -7605,7 +7605,7 @@ JLC7628 Stackup
 <wire x1="448.31" y1="117.4" x2="452.03" y2="113.68" width="0.2" layer="2"/>
 </signal>
 <signal name="DIN6_P">
-<contactref element="R36" pad="1"/>
+<contactref element="R37" pad="1"/>
 <contactref element="D27" pad="3"/>
 <wire x1="435.7" y1="129.4" x2="433.9414" y2="129.4" width="0.2" layer="1"/>
 <contactref element="U49" pad="12"/>
@@ -7618,7 +7618,7 @@ JLC7628 Stackup
 <wire x1="444.755" y1="127.445" x2="450.555" y2="127.445" width="0.2" layer="2"/>
 </signal>
 <signal name="DIN4_P">
-<contactref element="R38" pad="1"/>
+<contactref element="R39" pad="1"/>
 <contactref element="D29" pad="3"/>
 <wire x1="435.7" y1="125.4" x2="433.9414" y2="125.4" width="0.2" layer="1"/>
 <contactref element="U49" pad="10"/>
@@ -7629,7 +7629,7 @@ JLC7628 Stackup
 <wire x1="436.5" y1="123.8" x2="451.99" y2="123.8" width="0.2" layer="2"/>
 </signal>
 <signal name="DIN2_P">
-<contactref element="R40" pad="1"/>
+<contactref element="R41" pad="1"/>
 <contactref element="D32" pad="3"/>
 <wire x1="435.7" y1="121.4" x2="433.9414" y2="121.4" width="0.2" layer="1"/>
 <wire x1="435.8" y1="121.4" x2="435.7" y2="121.4" width="0.2" layer="1"/>
@@ -7644,7 +7644,7 @@ JLC7628 Stackup
 <wire x1="436.1" y1="120.4" x2="435.7" y2="120.4" width="0.2" layer="2"/>
 </signal>
 <signal name="DIN0_P">
-<contactref element="R42" pad="1"/>
+<contactref element="R43" pad="1"/>
 <contactref element="D34" pad="3"/>
 <wire x1="435.7" y1="117.4" x2="433.9414" y2="117.4" width="0.2" layer="1"/>
 <contactref element="U49" pad="14"/>
@@ -8479,7 +8479,7 @@ JLC7628 Stackup
 </signal>
 <signal name="+5V0_GOOD">
 <contactref element="U47" pad="B4"/>
-<contactref element="R43" pad="1"/>
+<contactref element="R25" pad="1"/>
 <contactref element="Q9" pad="G"/>
 <wire x1="447.9875" y1="95.9125" x2="447.47" y2="96.43" width="0.2" layer="1"/>
 <via x="451.3" y="104.1" extent="1-16" drill="0.3"/>
