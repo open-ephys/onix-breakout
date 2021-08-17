@@ -79,7 +79,7 @@ plt.scatter(np.arange(160),np.ones(160)+4, c=np.arange(160), s=180, cmap=c1)
 
 
 #%% Create hex initialization file
-cols = categorical_cmap(10, 16, cmap="tab10", continuous=True)[0]
+cols = categorical_cmap(10, 17, cmap="tab10", continuous=True)[0]
 
 # The brightness of the colors needs to be really really toned down to look good on Neopixels
 cols_hsv = np.apply_along_axis(lambda c: colorsys.rgb_to_hsv(c[0], c[1], c[2]), 1, cols)
@@ -92,7 +92,8 @@ cmap = matplotlib.colors.ListedColormap(cols)
 plt.figure()
 plt.scatter(np.arange(160),np.ones(160)+4, c=np.arange(160), s=180, cmap=cmap)
 
-
+#%% Insert 0-brightness rows
+cols[0::17] = [0, 0, 0]
 #%%
 cols = np.ceil(255 * cols)
 cols = cols.astype('uint8') 
