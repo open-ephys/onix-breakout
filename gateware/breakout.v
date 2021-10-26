@@ -85,6 +85,7 @@ reg d_in_clk;
 
 // D_INs with pullup applied
 wire [7:0] d_in_pu;
+wire [7:0] d_in_sync;
 
 // Main system clock
 // ---------------------------------------------------------------
@@ -138,7 +139,7 @@ user_io # (
 breakout_to_host b2h (
     .i_clk(sys_clk),
     .i_clk_s(LVDS_IN[0]),
-    .i_port(d_in_pu),
+    .i_port(d_in_sync),
     .i_button(buttons),
     .i_link_pow(link_pow),
     .o_port_samp_clk(d_in_clk),
@@ -221,6 +222,15 @@ assign USBPU = 0;
 // Digital inputs are sampled on the falling edge of lvds_out
 // The result is packed on the rising edge to avoid metastability
 
+// Digital input synchronizer and i_capture_clk
+//----------------------------------------------------------------
+digital_in_sync_capture dsync (
+    .i_clk(sys_clk),
+    .i_capture_clk(d_in_clk),
+    .i_d(d_in_pu),
+    .o_d(d_in_sync)
+  );
+
 // Enable pullups on the digital input port
 SB_IO # (
     .PIN_TYPE(6'b 0000_00),
@@ -229,7 +239,7 @@ SB_IO # (
     .PACKAGE_PIN(D_IN0),
     .D_IN_0(d_in_pu[0]),
     .CLOCK_ENABLE(1'b1),
-    .INPUT_CLK(d_in_clk)
+    .INPUT_CLK(sys_clk)
 );
 
 SB_IO # (
@@ -239,7 +249,7 @@ SB_IO # (
     .PACKAGE_PIN(D_IN1),
     .D_IN_0(d_in_pu[1]),
     .CLOCK_ENABLE(1'b1),
-    .INPUT_CLK(d_in_clk)
+    .INPUT_CLK(sys_clk)
 );
 
 SB_IO # (
@@ -249,7 +259,7 @@ SB_IO # (
     .PACKAGE_PIN(D_IN2),
     .D_IN_0(d_in_pu[2]),
     .CLOCK_ENABLE(1'b1),
-    .INPUT_CLK(d_in_clk)
+    .INPUT_CLK(sys_clk)
 );
 
 SB_IO # (
@@ -259,7 +269,7 @@ SB_IO # (
     .PACKAGE_PIN(D_IN3),
     .D_IN_0(d_in_pu[3]),
     .CLOCK_ENABLE(1'b1),
-    .INPUT_CLK(d_in_clk)
+    .INPUT_CLK(sys_clk)
 );
 
 SB_IO # (
@@ -269,7 +279,7 @@ SB_IO # (
     .PACKAGE_PIN(D_IN4),
     .D_IN_0(d_in_pu[4]),
     .CLOCK_ENABLE(1'b1),
-    .INPUT_CLK(d_in_clk)
+    .INPUT_CLK(sys_clk)
 );
 
 SB_IO # (
@@ -279,7 +289,7 @@ SB_IO # (
     .PACKAGE_PIN(D_IN5),
     .D_IN_0(d_in_pu[5]),
     .CLOCK_ENABLE(1'b1),
-    .INPUT_CLK(d_in_clk)
+    .INPUT_CLK(sys_clk)
 );
 
 SB_IO # (
@@ -289,7 +299,7 @@ SB_IO # (
     .PACKAGE_PIN(D_IN6),
     .D_IN_0(d_in_pu[6]),
     .CLOCK_ENABLE(1'b1),
-    .INPUT_CLK(d_in_clk)
+    .INPUT_CLK(sys_clk)
 );
 
 SB_IO # (
@@ -299,7 +309,7 @@ SB_IO # (
     .PACKAGE_PIN(D_IN7),
     .D_IN_0(d_in_pu[7]),
     .CLOCK_ENABLE(1'b1),
-    .INPUT_CLK(d_in_clk)
+    .INPUT_CLK(sys_clk)
 );
 
 // Debugger
