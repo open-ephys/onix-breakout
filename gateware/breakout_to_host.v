@@ -44,7 +44,6 @@ reg [9:0] shift_d1;
 
 // Frame clock
 reg [9:0] shift_clk = 10'b1111100000;
-reg state = 0;
 
 // Out of phase with the DDR output clock
 assign o_port_samp_clk = shift_clk[4];
@@ -56,13 +55,11 @@ always @ (posedge i_clk) begin
 
         shift_d0 <= {2'b00, button, link_pow[1:0]};
         shift_d1 <= {port, link_pow[3:2]};
-        state <= 1;
 
     end else begin // 2 bits at time for DDR
 
         shift_d0 <= {shift_d0[7:0], 2'b00};
         shift_d1 <= {shift_d1[7:0], 2'b00};
-        state <= 0;
 
     end
 
