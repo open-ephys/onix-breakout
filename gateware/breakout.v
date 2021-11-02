@@ -94,7 +94,9 @@ wire pll_locked ;
 
 `ifndef SIMULATION
 
-pll_10_60_2ns pll_sys(LVDS_IN[0], sys_clk, pll_locked); // 60 MHz sys clk
+//pll_10_60_2ns pll_sys(LVDS_IN[0], sys_clk, pll_locked); // 60 MHz sys clk
+assign sys_clk = ~LVDS_IN[0]; //60MHz input, 180º phase shifted to ease signal reading.
+//Jon, here replace the assign with a proper buffer or, even better, a 1:1 PLL with 180º shift (just to be sure we have a clean clock)
 
 // Testing
 //pll_16_60 pll_sys(XTAL, sys_clk, pll_locked); // 60 MHz sys clk
@@ -138,11 +140,9 @@ user_io # (
 // ---------------------------------------------------------------
 breakout_to_host b2h (
     .i_clk(sys_clk),
-    .i_clk_s(LVDS_IN[0]),
     .i_port(d_in_sync),
     .i_button(buttons),
     .i_link_pow(link_pow),
-    .o_port_samp_clk(d_in_clk),
     .o_clk_s(LVDS_OUT[0]),
     .o_d0_s(LVDS_OUT[1]),
     .o_d1_s(LVDS_OUT[2])
@@ -151,8 +151,7 @@ breakout_to_host b2h (
 // Host to breakout
 // ---------------------------------------------------------------
 host_to_breakout h2b (
-    .i_clk(sys_clk),        // Synchronous to LVDS_IN[0]
-    .i_clk_s(LVDS_IN[0]),
+    .i_clk(sys_clk),        // 180º shifted to LVDS_IN[0]
     .i_d0_s(LVDS_IN[1]),
     .o_port(D_OUT),
     //.o_reset(TODO),       // Not convinced this needed or good
@@ -219,14 +218,10 @@ assign LED = 0;
 // Drive USB pull-up resistor to '0' to disable USB
 assign USBPU = 0;
 
-// Digital inputs are sampled on the falling edge of lvds_out
-// The result is packed on the rising edge to avoid metastability
-
-// Digital input synchronizer and i_capture_clk
+// Digital input synchronizer
 //----------------------------------------------------------------
-digital_in_sync_capture dsync (
+digital_in_sync dsync (
     .i_clk(sys_clk),
-    .i_capture_clk(d_in_clk),
     .i_d(d_in_pu),
     .o_d(d_in_sync)
   );

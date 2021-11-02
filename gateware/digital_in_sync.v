@@ -1,6 +1,5 @@
-module digital_in_sync_capture (
+module digital_in_sync (
     input wire i_clk,
-    input wire i_capture_clk,
 
     input wire [7:0] i_d,
     output wire [7:0] o_d
@@ -19,9 +18,6 @@ module digital_in_sync_capture (
     sync[1] <= i_d;
   end
 
-  always @(negedge i_capture_clk)
-  begin
-    o_d <= sync[0];
-  end
+  assign o_d = sync[0];
 
   endmodule
