@@ -173,23 +173,23 @@ always @ (*) begin
     rgb[7] = off; // TODO: "Host"
     rgb[8] = (leds_on & i_harp_hb) ? red : off;
 
-    rgb[9]  = (leds_on & i_din_state[0]) ? blue : off;
-    rgb[10] = (leds_on & i_din_state[1]) ? blue : off;
-    rgb[11] = (leds_on & i_din_state[2]) ? blue : off;
-    rgb[12] = (leds_on & i_din_state[3]) ? blue : off;
-    rgb[13] = (leds_on & i_din_state[4]) ? blue : off;
-    rgb[14] = (leds_on & i_din_state[5]) ? blue : off;
-    rgb[15] = (leds_on & i_din_state[6]) ? blue : off;
-    rgb[16] = (leds_on & i_din_state[7]) ? blue : off;
+    rgb[9]  = (leds_on & i_dout_state[0]) ? blue : off;
+    rgb[10] = (leds_on & i_dout_state[1]) ? blue : off;
+    rgb[11] = (leds_on & i_dout_state[2]) ? blue : off;
+    rgb[12] = (leds_on & i_dout_state[3]) ? blue : off;
+    rgb[13] = (leds_on & i_dout_state[4]) ? blue : off;
+    rgb[14] = (leds_on & i_dout_state[5]) ? blue : off;
+    rgb[15] = (leds_on & i_dout_state[6]) ? blue : off;
+    rgb[16] = (leds_on & i_dout_state[7]) ? blue : off;
 
-    rgb[17] = (leds_on & i_dout_state[7]) ? blue : off;
-    rgb[18] = (leds_on & i_dout_state[6]) ? blue : off;
-    rgb[19] = (leds_on & i_dout_state[5]) ? blue : off;
-    rgb[20] = (leds_on & i_dout_state[4]) ? blue : off;
-    rgb[21] = (leds_on & i_dout_state[3]) ? blue : off;
-    rgb[22] = (leds_on & i_dout_state[2]) ? blue : off;
-    rgb[23] = (leds_on & i_dout_state[1]) ? blue : off;
-    rgb[24] = (leds_on & i_dout_state[0]) ? blue : off;
+    rgb[17] = (leds_on & i_din_state[7]) ? blue : off;
+    rgb[18] = (leds_on & i_din_state[6]) ? blue : off;
+    rgb[19] = (leds_on & i_din_state[5]) ? blue : off;
+    rgb[20] = (leds_on & i_din_state[4]) ? blue : off;
+    rgb[21] = (leds_on & i_din_state[3]) ? blue : off;
+    rgb[22] = (leds_on & i_din_state[2]) ? blue : off;
+    rgb[23] = (leds_on & i_din_state[1]) ? blue : off;
+    rgb[24] = (leds_on & i_din_state[0]) ? blue : off;
 
     // NB: These if statements make heavy use of decending case priority
     // encoding
