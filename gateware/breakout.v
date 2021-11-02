@@ -16,6 +16,7 @@
 // COMPATIBILITY:
 // - fmc-host rev. 1.4
 // - fmc-host rev. 1.5
+// - fmc-host rev. 1.6 (rev. F)
 
 // NB: Used to identify implicitly-declared nets
 `default_nettype none
@@ -28,6 +29,7 @@
 `include "harp_sync.v"
 `include "neopix_controller.v"
 //`include "uart_debugger.v"
+`include "digital_in_sync_capture.v"
 `include "uart_tx.v"
 
 module breakout (
@@ -58,6 +60,8 @@ module breakout (
     output  wire            UART    // For debug
 );
 
+// System clock rate
+localparam SYS_CLK_RATE_HZ = 60_000_000;
 
 // Internal nets
 reg reset;
@@ -83,7 +87,7 @@ wire [15:0] gpio_dir;
 // DIN sample clock
 reg d_in_clk;
 
-// D_INs with pullup applied
+// D_INs with pullup applied and sychronized to sys_clk
 wire [7:0] d_in_pu;
 wire [7:0] d_in_sync;
 
@@ -119,7 +123,7 @@ assign sys_clk = PLL_SIM;
 // IO expander
 // ---------------------------------------------------------------
 user_io # (
-    .CLK_RATE_HZ(60_000_000),
+    .CLK_RATE_HZ(SYS_CLK_RATE_HZ),
     .I2C_CLK_RATE_HZ(400_000)
 ) uio (
     .i_clk(sys_clk),
@@ -175,7 +179,7 @@ host_to_breakout h2b (
 // HARP
 // ---------------------------------------------------------------
 harp_sync # (
-    .CLK_RATE_HZ(60_000_000)
+    .CLK_RATE_HZ(SYS_CLK_RATE_HZ)
 ) sync (
     .clk(sys_clk),
     .reset(reset),
@@ -187,7 +191,7 @@ harp_sync # (
 // Neopixel control
 // ---------------------------------------------------------------
 neopix_controller # (
-    .CLK_RATE_HZ(60_000_000)
+    .CLK_RATE_HZ(SYS_CLK_RATE_HZ)
 ) neopix (
     .i_clk(sys_clk),
     .i_reset(reset),
@@ -229,7 +233,7 @@ digital_in_sync_capture dsync (
     .i_capture_clk(d_in_clk),
     .i_d(d_in_pu),
     .o_d(d_in_sync)
-  );
+);
 
 // Enable pullups on the digital input port
 SB_IO # (
@@ -316,7 +320,7 @@ SB_IO # (
 // ---------------------------------------------------------------
 //uart_debugger # (
 //    .DATA_BYTES(6),
-//    .CLK_RATE_HZ(60_000_000),
+//    .CLK_RATE_HZ(SYS_CLK_RATE_HZ),
 //    .DEAD_CLKS(6000)
 //) debugger (
 //    .i_clk(sys_clk),

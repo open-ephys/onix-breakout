@@ -44,7 +44,7 @@ reg [1:0] state = IDLE;
 reg [$clog2(DATA_BYTES):0] byte_cnt = 0;
 reg [$clog2(DEAD_CLKS):0] dead_cnt = 0;
 
-always @ (posedge i_clk) begin
+always @(posedge i_clk) begin
 
     if (i_reset) begin
         byte_cnt <= 0;
