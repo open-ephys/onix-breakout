@@ -13,7 +13,9 @@
 // 11           | Reset
 // -------------------------------------------------------------------------
 //
-// With 120 MHz serial clock, this will result in periodic 10MHz dout updates.
+// Packets are sent through 8b10b encoding including a control code and a 16-bit words
+// 4 MSB bits are zero-paded
+//
 // The full slow word is 48 bits and consists of the following elements:
 //
 //  MSB [acq_running,
@@ -44,18 +46,15 @@
 // gpio_dir     | 16 bit register for possible future digital io directionality configuration.
 // -------------------------------------------------------------------------
 
-module host_to_breakout
-(
+`include "lvds_8b10b_receive.v"
+
+module host_to_breakout (
+
     // Local clk
-    // Must be synchronous to (0 deg. phase aligned)
-    // and 6x frequency of i_clk_s
+    // Must be have 180 phase alignment with the input data
     input   wire            i_clk,
 
-    // Serial inputs
-    // i_clk_s drives external PLL to create i_clk
-    input   wire            i_clk_s,
     input   wire            i_d0_s,
-    output  wire            o_clk_s,
 
     // Complete slow word
     output  reg             o_slow_valid,
@@ -79,25 +78,53 @@ module host_to_breakout
     output  reg             o_reset,
 
     // Parallel outputs
-    output  reg     [7:0]   o_port
+    output  reg     [7:0]   o_port,
 
     // Debug
     //output  reg     [1:0]   o_ddr_debug,
     //output  reg     [47:0]  o_slow_shift_debug,
     //output  reg     [11:0]  o_shift_d0_debug
+    output  wire           o_8b10b_valid,
+    output  wire    [2:0]  o_8b10b_error
 );
 
-// DDR
-wire [1:0] ddr_d0_s;
+// Data
+wire d0_s;
+wire [15:0] data_recvd;
+wire data_rdy;
+
+//Error detection
+wire disp_err;
+wire code_err;
+wire sync_err;
+wire comm_error;
+reg had_error = 1'b0;
+reg [4:0] slow_count = 5'b0;
+localparam SLOW_TRANSFERS = 5'd24;
+assign comm_error = disp_err | code_err | sync_err;
 
 // Shift register state
-reg [11:0] shift_d0;
 reg [47:0] slow_shift = 0;
 
 // Debug
 //assign o_ddr_debug = ~ddr_d0_s;
 //assign o_slow_shift_debug = slow_shift;
 //assign o_shift_d0_debug  = shift_d0;
+assign o_8b10b_valid = data_rdy;
+assign o_8b10b_error = {disp_err, code_err, sync_err};
+
+lvds_8b10b_receive # (
+    .NUM_BYTES(2)
+) recv (
+    .i_clk(i_clk),
+    .i_reset(1'b0),
+    .i_serial(d0_s),
+    .o_data(data_recvd),
+    .o_data_rdy(data_rdy),
+    .o_disp_err(disp_err),
+    .o_code_err(code_err),
+    .o_sync_err(sync_err)
+);
 
 // Initialize
 initial begin
@@ -108,70 +135,75 @@ initial begin
     o_ledmode <= 2'b11;
 end
 
-// Fast clock
+//Act when received data
 always @ (posedge i_clk) begin
-    // Shift in fast data
-    shift_d0 <= {shift_d0[9:0], ddr_d0_s};
+
+    if (data_rdy == 1'b1) begin
+        if (comm_error == 1'b1) had_error <= 1'b1; // Ignore everything if there was a reception error
+        else begin
+            // Update fast output port
+            o_port <= {data_recvd[7:0]};
+
+            // Feed slow word
+            slow_shift <= {slow_shift[45:0], data_recvd[9:8]};
+
+            // Check slow word control bits
+            case (data_recvd[11:10])
+                2'b00 : begin // Shift slow data in
+                    o_reset <= 'b0;
+                    o_slow_valid <= 'b0;
+                    slow_count <= slow_count + 1'b1;
+
+                end
+                2'b01 : begin // Set outputs
+                    o_reset <= 1'b0;
+                    had_error <= 1'b0;
+
+                    // Only process serial register if all transfers have been successful since last validation
+                    if (had_error == 1'b0 && slow_count == SLOW_TRANSFERS - 1) begin
+                      o_slow_valid <= 1'b1;
+                      o_slow_value <= slow_shift;
+
+                      o_acq_running <= slow_shift[47];
+                      o_acq_reset_done <= slow_shift[46];
+                      o_reserved <= slow_shift[45:44];
+                      o_ledlevel <= slow_shift[43:40];
+                      o_ledmode <= slow_shift[39:38];
+                      o_porta_status <= slow_shift[37:36];
+                      o_portb_status <= slow_shift[35:34];
+                      o_portc_status <= slow_shift[33:32];
+                      o_portd_status <= slow_shift[31:30];
+                      o_aio_dir <= slow_shift[29:18];
+                      o_harp_conf <= slow_shift[17:16];
+                      o_gpio_dir <= slow_shift[15:0];
+                    end
+
+                end
+                2'b10 : begin // Reserved
+                    o_reset <= 'b0;
+                    o_slow_valid <= 'b0;
+                    slow_count <= 'b0;
+                    had_error <= 'b0;
+                end
+                2'b11 : begin // Signal reset
+                    o_reset <= 'b1;
+                    o_slow_valid <= 'b0;
+                    slow_count <= 'b0;
+                    had_error <= 'b0;
+                end
+            endcase
+        end
+    end
 end
 
-// Slow clock
-always @ (posedge i_clk_s) begin
-
-    // NB: shift_d0 has not yet been shifted left, so we use 2 bit
-    // right-shifted indices here when indexing into it
-
-    // Update fast output port
-    o_port <= {shift_d0[5:0], ddr_d0_s};
-
-    // Feed slow word
-    slow_shift <= {slow_shift[45:0], shift_d0[7:6]};
-
-    // Check slow word control bits
-    case (shift_d0[9:8])
-        2'b00 : begin // Shift slow data in
-            o_reset <= 'b0;
-            o_slow_valid <= 'b0;
-        end
-        2'b01 : begin // Set outputs
-            o_reset <= 1'b0;
-
-            o_slow_valid <= 1'b1;
-            o_slow_value <= slow_shift;
-
-            o_acq_running <= slow_shift[47];
-            o_acq_reset_done <= slow_shift[46];
-            o_reserved <= slow_shift[45:44];
-            o_ledlevel <= slow_shift[43:40];
-            o_ledmode <= slow_shift[39:38];
-            o_porta_status <= slow_shift[37:36];
-            o_portb_status <= slow_shift[35:34];
-            o_portc_status <= slow_shift[33:32];
-            o_portd_status <= slow_shift[31:30];
-            o_aio_dir <= slow_shift[29:18];
-            o_harp_conf <= slow_shift[17:16];
-            o_gpio_dir <= slow_shift[15:0];
-
-        end
-        2'b10 : begin // Reserved
-            o_reset <= 'b0;
-            o_slow_valid <= 'b0;
-        end
-        2'b11 : begin // Signal reset
-            o_reset <= 'b1;
-            o_slow_valid <= 'b0;
-        end
-    endcase
-end
-
-// Enable DDR sampling of i_d0_s using rising and falling edge of i_clk
 SB_IO # (
-    .PIN_TYPE(6'b000000),
+    .PIN_TYPE(6'b000010),
     .IO_STANDARD("SB_LVCMOS")
-) d0_ddr (
+) d0_in (
     .PACKAGE_PIN(i_d0_s),
     .CLOCK_ENABLE(1'b1),
     .INPUT_CLK(i_clk),
-    .D_IN_0(ddr_d0_s[1]), // rising
-    .D_IN_1(ddr_d0_s[0])  // falling
+    .D_IN_0(d0_s)
 );
+
 endmodule

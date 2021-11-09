@@ -109,9 +109,10 @@ reg [23:0] rgb [0:40];
 reg dark = 1'b0;
 reg [1:0] button0_history = 2'b00;
 
-always @ (posedge i_clk) begin
+always @(posedge i_clk) begin
 
     button0_history <= {button0_history[0], i_button[0]};
+
     if (button0_history == 2'b01) begin
         dark <= dark + 1;
     end
@@ -122,7 +123,7 @@ reg [3:0] port_running = 4'b0000;
 reg [3:0] port_failed = 4'b0000;
 reg last_acq_running = 1'b0;
 
-always @ (posedge i_clk) begin
+always @(posedge i_clk) begin
 
     last_acq_running <= i_acq_running;
 
@@ -154,7 +155,7 @@ end
 wire leds_on = ~dark;
 
 // LED color logic
-always @ (*) begin
+always @(*) begin
 
     rgb[0] = leds_on ? yellow : off;
 

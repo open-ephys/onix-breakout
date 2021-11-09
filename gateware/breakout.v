@@ -21,15 +21,15 @@
 // NB: Used to identify implicitly-declared nets
 `default_nettype none
 
-`include "pll_10_60_2ns.v"
+`include "pll_60_60_90deg.v"
 //`include "pll_16_60.v"
 `include "breakout_to_host.v"
 `include "host_to_breakout.v"
 `include "user_io.v"
 `include "harp_sync.v"
 `include "neopix_controller.v"
-//`include "uart_debugger.v"
-`include "digital_in_sync_capture.v"
+`include "uart_debugger.v"
+`include "digital_in_sync.v"
 `include "uart_tx.v"
 
 module breakout (
@@ -70,8 +70,6 @@ wire [3:0] link_pow;
 wire harp_hb;
 
 // Host to breakout slow word results
-//wire slow_word_valid;
-//wire [47:0] slow_word;
 wire acq_running;
 wire acq_reset_done;
 wire [3:0] ledlevel;
@@ -91,6 +89,12 @@ reg d_in_clk;
 wire [7:0] d_in_pu;
 wire [7:0] d_in_sync;
 
+// Debug
+//wire slow_word_valid;
+//wire [47:0] slow_word;
+wire valid_8b10b;
+wire [2:0] err_8b10;
+
 // Main system clock
 // ---------------------------------------------------------------
 wire sys_clk;
@@ -98,7 +102,8 @@ wire pll_locked ;
 
 `ifndef SIMULATION
 
-pll_10_60_2ns pll_sys(LVDS_IN[0], sys_clk, pll_locked); // 60 MHz sys clk
+// 60MHz 180 deg. phase shifted to ease signal reading.
+pll_60_60_90deg pll_sys(LVDS_IN[0], sys_clk, pll_locked); 
 
 // Testing
 //pll_16_60 pll_sys(XTAL, sys_clk, pll_locked); // 60 MHz sys clk
@@ -142,11 +147,9 @@ user_io # (
 // ---------------------------------------------------------------
 breakout_to_host b2h (
     .i_clk(sys_clk),
-    .i_clk_s(LVDS_IN[0]),
     .i_port(d_in_sync),
     .i_button(buttons),
     .i_link_pow(link_pow),
-    .o_port_samp_clk(d_in_clk),
     .o_clk_s(LVDS_OUT[0]),
     .o_d0_s(LVDS_OUT[1]),
     .o_d1_s(LVDS_OUT[2])
@@ -155,8 +158,7 @@ breakout_to_host b2h (
 // Host to breakout
 // ---------------------------------------------------------------
 host_to_breakout h2b (
-    .i_clk(sys_clk),        // Synchronous to LVDS_IN[0]
-    .i_clk_s(LVDS_IN[0]),
+    .i_clk(sys_clk),        // 180º shifted to LVDS_IN[0]
     .i_d0_s(LVDS_IN[1]),
     .o_port(D_OUT),
     //.o_reset(TODO),       // Not convinced this needed or good
@@ -171,9 +173,11 @@ host_to_breakout h2b (
     .o_portd_status(portd_status),
     .o_aio_dir(aio_dir),
     .o_harp_conf(harp_conf),
-    .o_gpio_dir(gpio_dir)
+    .o_gpio_dir(gpio_dir),
     //.o_slow_valid(slow_word_valid),
     //.o_slow_value(slow_word)
+    .o_8b10b_valid(valid_8b10b),
+    .o_8b10b_error(err_8b10)
 );
 
 // HARP
@@ -223,14 +227,10 @@ assign LED = 0;
 // Drive USB pull-up resistor to '0' to disable USB
 assign USBPU = 0;
 
-// Digital inputs are sampled on the falling edge of lvds_out
-// The result is packed on the rising edge to avoid metastability
-
-// Digital input synchronizer and i_capture_clk
+// Digital input synchronizer
 //----------------------------------------------------------------
-digital_in_sync_capture dsync (
+digital_in_sync dsync (
     .i_clk(sys_clk),
-    .i_capture_clk(d_in_clk),
     .i_d(d_in_pu),
     .o_d(d_in_sync)
 );
@@ -318,15 +318,15 @@ SB_IO # (
 
 // Debugger
 // ---------------------------------------------------------------
-//uart_debugger # (
-//    .DATA_BYTES(6),
-//    .CLK_RATE_HZ(SYS_CLK_RATE_HZ),
-//    .DEAD_CLKS(6000)
-//) debugger (
-//    .i_clk(sys_clk),
-//    .i_reset(reset),
-//    .i_data_valid(slow_word_valid),
-//    .i_data(slow_word),
-//    .o_uart_tx(UART)
-//);
+uart_debugger # (
+    .DATA_BYTES(1),
+    .CLK_RATE_HZ(SYS_CLK_RATE_HZ),
+    .DEAD_CLKS(6000)
+) debugger (
+    .i_clk(sys_clk),
+    .i_reset(reset),
+    .i_data_valid(valid_8b10b),
+    .i_data({5'b0, err_8b10}),
+    .o_uart_tx(UART)
+);
 endmodule
