@@ -24,6 +24,8 @@ TOP = breakout
 #TOP = uart_debugger
 #TOP = input_debug
 #TOP = neopix_controller
+#TOP = lvds_8b10b_send
+#TOP = lvds_8b10b_receive
 
 SIMFLAG =
 PIN_DEF = $(TOP).pcf
@@ -57,7 +59,7 @@ all: $(TOP).rpt $(TOP).bin
 
 # Perform pre-synthesis simulation
 %_tb.vcd: %_tb
-	vvp -N $< +vcd=$@
+	vvp -vN $< +vcd=$@
 
 # Transpile synthesized design to large .v file
 %_syn.v: %.json
@@ -69,7 +71,7 @@ all: $(TOP).rpt $(TOP).bin
 
 # Perform post-synthesis simulation
 %_syntb.vcd: %_syntb.out
-	vvp -v -N $< +vcd=$@
+	vvp -vN $< +vcd=$@
 
 # Pre-synthesis simulation target
 .PHONY: sim

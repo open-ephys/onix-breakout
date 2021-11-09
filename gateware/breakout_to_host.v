@@ -1,106 +1,111 @@
-// serialized output q0: [X, X, but5, ...., but1, but0, pow0, pow1]
-// serialized output q1: [din7, ...., din1, din0, pow2, pow3]
+// This module transmits data through 2 serialized lines transmitting 16-bits
+// words using 8b/10b, plus a control code, for a total of 30 coded bits at 60MHz
+// This results in 2MHz per line. However, digital inputs are sent in both lines, sampled
+// at an offset, so digital input bandwidth can be 4MHz, while button and power status is 2MHz
+//
+// Data words are:
+// D0: [din7, ..., din1, din0, X, X, but5, ..., but1, but0]
+// D1: [din7, ..., din1, din0, X, X, X, X, pow3, pow2, pow1, pow0]
 
-`include "clk_div.v"
+`include "lvds_8b10b_send.v"
 
 module breakout_to_host (
 
-    // Main clock coming from host, used to generate i_clk_s Using this to
-    // latch data inputs allows sampling to be synchronous with output updates
-    // in host_to_breakout
-    input   wire        i_clk_s,
-
-    // 0.5 the frequency of underlying data clock
-    input   wire        i_clk, // Full round robin is i_clk * 2 / 10.
+    input   wire        i_clk,
 
     // Parallel inputs
     input   wire [7:0]  i_port,
     input   wire [5:0]  i_button,
     input   wire [3:0]  i_link_pow,
 
-    // Clock to sample i_port
-    output  wire        o_port_samp_clk,
-
-    // Serial outputs (2x i_clk frequency due to DDR)
+    // Serial outputs
     output  wire        o_clk_s,
     output  wire        o_d0_s,
     output  wire        o_d1_s
 );
 
-// Port sampling
-reg [7:0]  port;
-reg [5:0]  button;
-reg [3:0]  link_pow;
+wire d0_s, d1_s;
+wire d0_reset, d1_reset;
+reg [15:0] d0_data;
+reg [15:0] d1_data;
+wire d0_data_rq, d1_data_rq;
 
-always @ (posedge i_clk_s) begin
-    port <= i_port;
-    button <= i_button;
-    link_pow <= i_link_pow;
+// Reset sequence. Since each transmission takes 30 cycles, we can sample the
+// digital inputs at twice the speed by starting both lines with a 15 cycle
+// offset.
+reg [4:0] count;
+initial begin
+    count <= 5'b0;
 end
 
-// Shifted, parallel words
-reg [9:0] shift_d0;
-reg [9:0] shift_d1;
+// Count up to 20
+always @(posedge i_clk) begin
+    if (count < 5'd20) begin
+        count <= count + 1'b1;
+    end
+end
 
-// Frame clock
-reg [9:0] shift_clk = 10'b1111100000;
+// Start the first line at 5 cycles, to give time to other parts to start
+// producing data
+assign d0_reset = (count < 5'd5) ? 1'b1 : 1'b0;
 
-// Out of phase with the DDR output clock
-assign o_port_samp_clk = shift_clk[4];
+// Start the second line 15 cycles after that
+assign d1_reset = (count < 5'd20) ? 1'b1 : 1'b0;
 
-// Shift out serialized data and clock 2 bits at a time
-always @ (posedge i_clk) begin
+lvds_8b10b_send # (
+    .NUM_BYTES(2)
+) d0 (
+    .i_clk(i_clk),
+    .i_reset(d0_reset),
+    .i_data(d0_data),
+    .o_data_read(d0_data_rq),
+    .o_serial(d0_s)
+);
 
-    if (shift_clk == 10'b0011111000) begin // new sample
+lvds_8b10b_send # (
+    .NUM_BYTES(2)
+) d1 (
+    .i_clk(i_clk),
+    .i_reset(d1_reset),
+    .i_data(d1_data),
+    .o_data_read(d1_data_rq),
+    .o_serial(d1_s)
+);
 
-        shift_d0 <= {2'b00, button, link_pow[1:0]};
-        shift_d1 <= {port, link_pow[3:2]};
-
-    end else begin // 2 bits at time for DDR
-
-        shift_d0 <= {shift_d0[7:0], 2'b00};
-        shift_d1 <= {shift_d1[7:0], 2'b00};
-
+// Port sampling
+always @(posedge i_clk) begin
+    if (d0_data_rq) begin
+        d0_data <= {i_port, 2'b00, i_button};
     end
 
-    shift_clk <= {shift_clk[7:0], shift_clk[9:8]};
+    if (d1_data_rq) begin
+        d1_data <= {i_port, 4'b0000, i_link_pow};
+    end
 end
 
-// Final serialized stream using DDR output drivers
+// Simple, unregistered output buffers
 SB_IO # (
-    .PIN_TYPE(6'b010000),
+    .PIN_TYPE(6'b011000),
     .IO_STANDARD("SB_LVCMOS")
-) clk_ddr (
+) clk_out (
     .PACKAGE_PIN(o_clk_s),
-    .CLOCK_ENABLE(1'b1),
-    .OUTPUT_CLK(i_clk),
-    .OUTPUT_ENABLE(1'b1),
-    .D_OUT_0(shift_clk[8]),
-    .D_OUT_1(shift_clk[9])
+    .D_OUT_0(i_clk)
 );
 
 SB_IO # (
-    .PIN_TYPE(6'b010000),
+    .PIN_TYPE(6'b011000),
     .IO_STANDARD("SB_LVCMOS")
-) d0_ddr (
+) d0_out (
     .PACKAGE_PIN(o_d0_s),
-    .CLOCK_ENABLE(1'b1),
-    .OUTPUT_CLK(i_clk),
-    .OUTPUT_ENABLE(1'b1),
-    .D_OUT_0(shift_d0[8]),
-    .D_OUT_1(shift_d0[9])
+    .D_OUT_0(d0_s)
 );
 
 SB_IO # (
-    .PIN_TYPE(6'b010000),
+    .PIN_TYPE(6'b011000),
     .IO_STANDARD("SB_LVCMOS")
-) d1_ddr (
+) d1_out (
     .PACKAGE_PIN(o_d1_s),
-    .CLOCK_ENABLE(1'b1),
-    .OUTPUT_CLK(i_clk),
-    .OUTPUT_ENABLE(1'b1),
-    .D_OUT_0(shift_d1[8]),
-    .D_OUT_1(shift_d1[9])
+    .D_OUT_0(d1_s)
 );
 
 endmodule
