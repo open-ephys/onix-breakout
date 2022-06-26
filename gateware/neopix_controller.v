@@ -171,8 +171,8 @@ always @(*) begin
     rgb[5] = (leds_on & i_button[2]) ? yellow : off;
     rgb[6] = (leds_on & i_button[1]) ? yellow : off;
 
-    rgb[7] = off; // TODO: "Host"
-    rgb[8] = (leds_on & i_harp_hb) ? red : off;
+    rgb[7] = (leds_on & i_harp_hb) ? red : off;
+    rgb[8] = off; // TODO: "Host"
 
     rgb[9]  = (leds_on & i_dout_state[0]) ? blue : off;
     rgb[10] = (leds_on & i_dout_state[1]) ? blue : off;
