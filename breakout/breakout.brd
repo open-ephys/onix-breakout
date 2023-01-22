@@ -198,7 +198,7 @@
 <text x="432.623709375" y="47.34420625" size="1.3" layer="21" font="vector" ratio="20" rot="SR0" align="center">Rev. 1.6
 JPN, JV
 Open Ephys
-2020</text>
+2020-2023</text>
 <text x="432.7236875" y="55.32319375" size="1.3" layer="21" font="vector" ratio="20" rot="SR0" align="center">Breakout Board</text>
 <wire x1="440.7" y1="51.9" x2="424.4" y2="51.9" width="0.2" layer="21"/>
 <wire x1="424.4" y1="51.9" x2="424.4" y2="42.4" width="0.2" layer="21"/>
