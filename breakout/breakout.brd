@@ -2557,7 +2557,7 @@ JLC7628 Stackup
 <element name="R25" library="jonnew" package="0402" value="4.7k" x="450.8" y="97.7" smashed="yes" rot="R180">
 <attribute name="NAME" x="452.157" y="97.162" size="1.016" layer="25" font="vector" ratio="18"/>
 </element>
-<element name="U48" library="harp input expander" package="TSOT23-5" value="TLV70033DDCR" x="478.6" y="118.1" smashed="yes" rot="R180">
+<element name="U48" library="harp input expander" package="TSOT23-5" value="LP5951MFX-3.3/NOPB" x="478.6" y="118.1" smashed="yes" rot="R180">
 <attribute name="MPN" value="TLV70033DDCR" x="485" y="124.8" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="479.797" y="115.736" size="1.016" layer="25" font="vector" ratio="18" rot="R180"/>
 <attribute name="NOTES" value="-" x="485" y="124.8" size="1.778" layer="27" rot="R180" display="off"/>

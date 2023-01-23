@@ -6859,7 +6859,7 @@ by exp-lbrs.ulp</description>
 <part name="Q9" library="jonnew" deviceset="N-MOSFET" device="_SOT23-GSD" value="IRFML8244TRPBF"/>
 <part name="R25" library="jonnew" deviceset="R" device="_0402" value="4.7k"/>
 <part name="SUPPLY9" library="jonnew" deviceset="+12V" device=""/>
-<part name="U48" library="harp input expander" deviceset="TLV700XX" device="" value="TLV70033DDCR">
+<part name="U48" library="harp input expander" deviceset="TLV700XX" device="" value="LP5951MFX-3.3/NOPB">
 <attribute name="MPN" value="TLV70033DDCR"/>
 <attribute name="NOTES" value="-"/>
 <attribute name="TYPE" value="SMD"/>
