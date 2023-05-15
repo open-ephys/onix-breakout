@@ -1,0 +1,24 @@
+{
+    "Header": {
+        "Comment": "All values are metric (mm)",
+        "CreationDate": "2023-01-29T12:42:10Z",
+        "GenerationSoftware": {
+            "Application": "EAGLE",
+            "Vendor": "Autodesk",
+            "Version": "9.5.1"
+        },
+        "Part": "Single"
+    },
+    "Overall": {
+        "BoardThickness": 1.5888,
+        "LayerNumber": 4,
+        "Name": {
+            "ProjectId": "breakout"
+        },
+        "Owner": "Filipe Carvalho <filipe@oeps.tech>",
+        "Size": {
+            "X": 485,
+            "Y": 160
+        }
+    }
+}
