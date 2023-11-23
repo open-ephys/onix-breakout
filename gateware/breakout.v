@@ -45,7 +45,7 @@ module breakout (
     output  wire    [7:0]   D_OUT,
     input   wire    [1:0]   LVDS_IN,
     output  wire    [2:0]   LVDS_OUT,
-    output  wire            HARP_CLK_OUT,
+    input   wire            HARP_CLK_IN,
     output  wire            LED,    // User/boot LED next to power LED
     output  wire            USBPU,  // USB pull-up resistor
     output  wire            NEOPIX,
@@ -150,6 +150,7 @@ breakout_to_host b2h (
     .i_port(d_in_sync),
     .i_button(buttons),
     .i_link_pow(link_pow),
+    .i_harp(HARP_CLK_IN),
     .o_clk_s(LVDS_OUT[0]),
     .o_d0_s(LVDS_OUT[1]),
     .o_d1_s(LVDS_OUT[2])
@@ -182,7 +183,7 @@ host_to_breakout h2b (
 
 // HARP
 // ---------------------------------------------------------------
-harp_sync # (
+/*harp_sync # (
     .CLK_RATE_HZ(SYS_CLK_RATE_HZ)
 ) sync (
     .clk(sys_clk),
@@ -190,7 +191,8 @@ harp_sync # (
     .run('b1),
     .TX(HARP_CLK_OUT),
     .LED(harp_hb)
-);
+);*/
+assign harp_hb = harp_conf[0];
 
 // Neopixel control
 // ---------------------------------------------------------------

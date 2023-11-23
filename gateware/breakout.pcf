@@ -64,7 +64,7 @@ set_io --warn-no-port LVDS_OUT[1] A8        # Pin 20
 set_io --warn-no-port LVDS_OUT[2] B7        # Pin 21
 set_io --warn-no-port I2C_SDA A7            # Pin 22
 set_io --warn-no-port I2C_SCL B6            # Pin 23
-set_io --warn-no-port HARP_CLK_OUT A6       # Pin 24
+set_io --warn-no-port HARP_CLK_IN A6        # Pin 24
 
 # SPI flash interface on bottom of board
 set_io --warn-no-port SPI_SS F7

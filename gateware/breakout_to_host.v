@@ -18,6 +18,8 @@ module breakout_to_host (
     input   wire [5:0]  i_button,
     input   wire [3:0]  i_link_pow,
 
+    input   wire        i_harp,
+
     // Serial outputs
     output  wire        o_clk_s,
     output  wire        o_d0_s,
@@ -29,6 +31,8 @@ wire d0_reset, d1_reset;
 reg [15:0] d0_data;
 reg [15:0] d1_data;
 wire d0_data_rq, d1_data_rq;
+wire harp_sync;
+reg harp_sync_reg = 1'b1;
 
 // Reset sequence. Since each transmission takes 30 cycles, we can sample the
 // digital inputs at twice the speed by starting both lines with a 15 cycle
@@ -75,11 +79,11 @@ lvds_8b10b_send # (
 // Port sampling
 always @(posedge i_clk) begin
     if (d0_data_rq) begin
-        d0_data <= {i_port, 2'b00, i_button};
+        d0_data <= {i_port, harp_sync_reg, 1'b0, i_button};
     end
 
     if (d1_data_rq) begin
-        d1_data <= {i_port, 4'b0000, i_link_pow};
+        d1_data <= {i_port, harp_sync_reg, 3'b000, i_link_pow};
     end
 end
 
@@ -107,5 +111,21 @@ SB_IO # (
     .PACKAGE_PIN(o_d1_s),
     .D_OUT_0(d1_s)
 );
+
+//harp registered input
+
+SB_IO # (
+    .PIN_TYPE(6'b 0000_00),
+    .PULLUP(1'b1)
+) din7 (
+    .PACKAGE_PIN(i_harp),
+    .D_IN_0(harp_sync),
+    .CLOCK_ENABLE(1'b1),
+    .INPUT_CLK(i_clk)
+);
+
+always @(posedge i_clk) begin
+    harp_sync_reg <= harp_sync;
+end
 
 endmodule
