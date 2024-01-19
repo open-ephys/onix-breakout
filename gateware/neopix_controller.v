@@ -41,6 +41,26 @@ module neopix_controller # (
     output  wire            o_neopix
 );
 
+//Timer for blinkenleds
+parameter COUNTER_WIDTH = $clog2(CLK_RATE_HZ - 1);
+reg [COUNTER_WIDTH - 1 : 0] counter = 'b0;
+reg blink = 1'b1;
+
+always @(posedge i_clk or posedge i_reset)
+begin
+    if (i_reset) begin
+        counter <= 'b0;
+        blink <= 1'b1;
+    end else begin
+        if (counter == CLK_RATE_HZ - 1) begin
+            counter <= 'b0;
+            blink <= ~blink;
+        end else begin
+            counter <= counter + 1'b1;
+        end
+    end
+end
+
 // Colors
 reg [23:0] off,
            blue,
@@ -162,7 +182,7 @@ always @(*) begin
     rgb[1] = leds_on ?
             (i_acq_reset_done ?
             (i_acq_running ?
-            (i_harp_hb ?
+            (blink ?
             red : off) : red) : purple) : off;
 
     rgb[2] = (leds_on & i_button[5]) ? yellow : off;
@@ -201,7 +221,7 @@ always @(*) begin
     else if (port_failed[3])                            // Link issue in the middle of acquisition
         rgb[25] = orange;
     else if (port_running[3])                           // Acquisition running
-        rgb[25] = i_harp_hb ? red : off;
+        rgb[25] = blink ? red : off;
     else if (i_porta_status != 2'b01)                   // Locked
         rgb[25] = purple;
     else if (i_link_pow[3] && i_porta_status == 2'b01)  // Power on, waiting for lock
@@ -215,7 +235,7 @@ always @(*) begin
     else if (port_failed[2])                            // Link issue in the middle of acquisition
         rgb[26] = orange;
     else if (port_running[2])                           // Acquisition running
-        rgb[26] = i_harp_hb ? red : off;
+        rgb[26] = blink ? red : off;
     else if (i_portb_status != 2'b01)                   // Locked
         rgb[26] = purple;
     else if (i_link_pow[2] && i_portb_status == 2'b01)  // Power on, waiting for lock
@@ -229,7 +249,7 @@ always @(*) begin
     else if (port_failed[1])                            // Link issue in the middle of acquisition
         rgb[27] = orange;
     else if (port_running[1])                           // Acquisition running
-        rgb[27] = i_harp_hb ? red : off;
+        rgb[27] = blink ? red : off;
     else if (i_portc_status != 2'b01)                   // Locked
         rgb[27] = purple;
     else if (i_link_pow[1] && i_portc_status == 2'b01)  // Power on, waiting for lock
@@ -243,7 +263,7 @@ always @(*) begin
     else if (port_failed[0])                            // Link issue in the middle of acquisition
         rgb[28] = orange;
     else if (port_running[0])                           // Acquisition running
-        rgb[28] = i_harp_hb ? red : off;
+        rgb[28] = blink ? red : off;
     else if (i_portd_status != 2'b01)                   // Locked
         rgb[28] = purple;
     else if (i_link_pow[0] && i_portd_status == 2'b01)  // Power on, waiting for lock
