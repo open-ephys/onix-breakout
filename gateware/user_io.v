@@ -208,7 +208,7 @@ always @(posedge i_clk) begin
                   i_portc_status != 2'b00,
                   i_portd_status != 2'b00};
 end*/
-wire [3:0] relay_and = 4'b1111; //Do not disable relays on the breakout
+wire [3:0] relay_and = 4'b1100; //Do not disable relays on the breakout
 
 // Meta-states
 reg [2:0] i2c_idx = 0;
